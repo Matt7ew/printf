@@ -6,7 +6,7 @@
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:44:03 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/03/23 16:35:01 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/04/06 12:30:04 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ int handle_specifier(char s, va_list args, int count)
     if (s == '%')
         ft_putchar(s);
     if (s == 'c')
-        ft_putchar(va_arg(args, char));
-    if ("")
-    if ("")
-    if ("")
-    if ("")
-    if ("")
-    if ("")
-    if ("")
+        ft_putchar(va_arg(args, int));
+    if (s == 's')
+        ft_putstr(va_arg(args, char*));
+    if (s == 'p')
+    if ()
+    if ()
+    if ()
+    if ()
+    if ()
 }
