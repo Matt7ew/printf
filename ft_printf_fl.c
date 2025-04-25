@@ -6,12 +6,11 @@
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:44:03 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/04/06 12:30:04 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/04/24 11:55:21 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 static int parse_format(const char *str, va_list args)
 {
@@ -43,14 +42,15 @@ int handle_specifier(char s, va_list args, int count)
 {
     if (s == '%')
         ft_putchar(s);
-    if (s == 'c')
+    else if (s == 'c')
         ft_putchar(va_arg(args, int));
-    if (s == 's')
+    else if (s == 's')
         ft_putstr(va_arg(args, char*));
-    if (s == 'p')
-    if ()
-    if ()
-    if ()
-    if ()
-    if ()
+    else if (s == 'p')
+        ft_showpointer(va_arg(args, void*));
+    else if (s == 'd')
+    else if (s == 'i')
+    else if (s == 'u')
+    else if (s == 'x')
+    else if (s == 'X')
 }

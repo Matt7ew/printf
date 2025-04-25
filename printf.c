@@ -6,12 +6,11 @@
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:43:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/03/15 19:57:32 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/04/24 11:56:11 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 int ft_printf(const char *str, ...)
 {
