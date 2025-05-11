@@ -6,7 +6,7 @@
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:08:51 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/04/24 11:56:32 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/05/06 09:31:47 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ int handle_specifier(char s, va_list args, int count)
     else if (s == 'u')
     else if (s == 'x')
     else if (s == 'X')
+    else
+        return(NULL);
 }
