@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_bigX.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 15:47:03 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/06 09:31:50 by matthewjorg      ###   ########.fr       */
+/*   Created: 2025/05/09 13:53:12 by matthewjorg       #+#    #+#             */
+/*   Updated: 2025/05/09 17:58:08 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include "libft/libft.h"
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-
-int ft_printf(const char *str, ...);
-void    ft_showpointer(void*);
+int	ft_print_BX(unsigned int s)
+{
+	char	*str;
+	int 	rl;
 
 
-
-
-
-#endif
+	str = ft_strbase(s, "0123456789ABCDEF");
+	if (str == NULL)
+		return (-1);
+	if (ft_putstr(str) < 0)
+	{
+		free(str);
+		return (-1);
+	}
+	rl = ft_strlen(str);
+	free(str);
+	return (rl);
+}

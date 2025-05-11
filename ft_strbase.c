@@ -6,7 +6,7 @@
 /*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/04/25 09:38:58 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/05/06 09:31:47 by matthewjorg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static get_rlength(unsigned long long int input, unsigned char *base)
 char ft_strbase(unsigned long long input, const char *base)
 {
     int length;
-    char    result;
+    char    *result;
 
     if (!check_base(base))
         return(NULL);
