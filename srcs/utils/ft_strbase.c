@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 07:06:45 by mjorge            #+#    #+#             */
-/*   Updated: 2025/05/17 07:07:29 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 07:37:44 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,24 @@ static int	check_base(char *base)
 
 char	*ft_strbase(unsigned long long n, char *base)
 {
-	char *str;
-	int base_len;
-	int digits;
+	char	*str;
+	int		base_len;
+	int		digits;
 
 	if (!check_base(base))
 		return (NULL);
 	base_len = ft_strlen(base);
-	digits = (n == 0) ? 1 : 0;
+	digits = 0;
+	if (n == 0)
+		digits = 1;
+	else
+		digits = 0;
 	while (n > 0 && ++digits)
 		n /= base_len;
 	str = (char *)malloc(digits + 1);
 	if (!str)
 		return (NULL);
 	str[digits--] = '\0';
-	n = (n == 0) ? 0 : n;
 	while (digits >= 0)
 	{
 		str[digits--] = base[n % base_len];

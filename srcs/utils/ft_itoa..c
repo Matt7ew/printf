@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 07:06:19 by mjorge            #+#    #+#             */
-/*   Updated: 2025/05/17 07:06:22 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 07:34:56 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ static int	count_digits(int n)
 {
 	int	count;
 
-	count = (n <= 0) ? 1 : 0;
+	count = 0;
+	if (n <= 0)
+		count = 1;
+	else
+		count = 0;
 	while (n != 0)
 	{
 		n /= 10;
@@ -27,9 +31,9 @@ static int	count_digits(int n)
 
 char	*ft_itoa(int n)
 {
-	char *str;
-	int len;
-	long num;
+	char	*str;
+	int		len;
+	long	num;
 
 	num = (long)n;
 	len = count_digits(num);

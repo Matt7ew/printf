@@ -6,15 +6,14 @@
 #    By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:32:17 by matthewjorg       #+#    #+#              #
-#    Updated: 2025/05/17 05:37:13 by mjorge           ###   ########.fr        #
+#    Updated: 2025/05/17 07:39:15 by mjorge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-LIBFT = libft/libft.a
 SRC_DIR = srcs
 OBJ_DIR = obj
-INCLUDES = -Iincludes -Ilibft
+INCLUDES = -Iincludes
 
 SRCS = \
 	$(SRC_DIR)/ft_printf.c \
@@ -24,32 +23,32 @@ SRCS = \
 	$(SRC_DIR)/handlers/handle_nbr.c \
 	$(SRC_DIR)/handlers/handle_hex.c \
 	$(SRC_DIR)/handlers/handle_unsigned.c \
-	$(SRC_DIR)/utils/ft_strbase.c
+	$(SRC_DIR)/utils/ft_strbase.c \
+	$(SRC_DIR)/utils/ft_strlen.c \
+	$(SRC_DIR)/utils/ft_itoa.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all: obj $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	ar rcs $@ $(OBJS)
+obj:
+	@mkdir -p $(OBJ_DIR)
 
-$(LIBFT):
-	$(MAKE) -C libft
+$(NAME): $(OBJS)
+	@ar rcs $@ $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
-	$(MAKE) -C libft clean
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C libft fclean
+	@rm -f $(NAME)
 
 re: fclean all
 
