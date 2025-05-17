@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 03:04:55 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 03:54:19 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	handle_u(unsigned int num)
 	char	*str;
 
 	str = ft_strbase(num, "0123456789");
+	ft_putstr_fd(str, 1);
+	return (1);
 }
 
 int	handle_d_i(int num)
@@ -89,4 +91,6 @@ int	handle_d_i(int num)
 		abs_num = num;
 	}
 	str = ft_strbase(abs_num, "0123456789");
+	ft_putstr_fd(str, 1);
+	return (1);
 }

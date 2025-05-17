@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:52 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 03:04:53 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 04:20:04 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,27 @@ int	ft_showpointer(void *p)
 	unsigned long long	ptr;
 	char				*s;
 	int					rl;
+	int					tmp;
 
-	if (p == NULL)
-		return (ft_putstr("0x0"));
+	if (!p)
+		return (write(1, "(nil)", 5));
 	ptr = (unsigned long long)p;
-	s = ft_strbase(ptr, "0123456789abcdef");
-	if (!s)
+	if (!(s = ft_strbase(ptr, "0123456789abcdef")))
 		return (-1);
-	rl = ft_putstr("0x");
+	rl = write(1, "0x", 2);
 	if (rl == -1)
-	{
-		free(s);
-		return (-1);
-	}
-	rl += ft_putstr(s);
+		return (free(s), -1);
+	tmp = write(1, s, ft_strlen(s));
 	free(s);
-	return (rl);
+	if (tmp == -1)
+		return (-1);
+	return (rl + tmp);
 }
 
 int	ft_str_unique(char *base)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (!base)
 		return (0);
@@ -64,8 +63,9 @@ int	ft_print_bx(unsigned int s)
 
 	str = ft_strbase(s, "0123456789ABCDEF");
 	if (!str)
-		return (-1);
-	rl = ft_putstr(str);
+		return (0);
+	ft_putstr_fd(str, 1);
+	rl = strlen(str);
 	free(str);
 	return (rl);
 }
@@ -77,8 +77,9 @@ int	ft_print_sx(unsigned int s)
 
 	str = ft_strbase(s, "0123456789abcdef");
 	if (!str)
-		return (-1);
-	rl = ft_putstr(str);
+		return (0);
+	ft_putstr_fd(str, 1);
+	rl = strlen(str);
 	free(str);
 	return (rl);
 }
