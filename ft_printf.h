@@ -6,17 +6,17 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:47:03 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 02:13:25 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 03:05:00 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
 
 int		ft_printf(const char *str, ...);
 int		ft_showpointer(void *p);
