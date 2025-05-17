@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:52 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 05:36:40 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 06:15:17 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,6 @@ int	handle_nbr(int n)
 	int		len;
 
 	str = ft_itoa(n);
-	if (!str)
-		return (-1);
-	len = write(1, str, ft_strlen(str));
-	free(str);
-	return (len);
-}
-
-int	handle_hex(unsigned int n, int uppercase)
-{
-	char *base;
-	char *str;
-	int len;
-
-	base = "0123456789abcdef";
-	if (uppercase)
-		base = "0123456789ABCDEF";
-	str = ft_strbase(n, base);
 	if (!str)
 		return (-1);
 	len = write(1, str, ft_strlen(str));
