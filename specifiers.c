@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   specifiers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
+/*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:08:51 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/06 09:31:47 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/05/17 02:20:25 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int handle_specifier(char s, va_list args, int count)
     else if (s == 'x')
     else if (s == 'X')
     else
-        return(NULL);
+        return(putstr("wrong input"));
 }

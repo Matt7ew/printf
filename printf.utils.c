@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:52 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 02:17:09 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 02:18:23 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_str_unique(char *base)
 	}
 	return (1);
 }
+
 int	ft_print_bx(unsigned int s)
 {
 	char	*str;
