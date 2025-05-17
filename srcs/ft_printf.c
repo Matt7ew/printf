@@ -6,11 +6,30 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 07:20:44 by mjorge            #+#    #+#             */
-/*   Updated: 2025/05/17 07:20:48 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 07:44:17 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+int	handle_specifier(char c, va_list args)
+{
+	if (c == 'c')
+		return (handle_char(va_arg(args, int)));
+	else if (c == 's')
+		return (handle_str(va_arg(args, char *)));
+	else if (c == 'p')
+		return (handle_ptr(va_arg(args, void *)));
+	else if (c == 'd' || c == 'i')
+		return (handle_nbr(va_arg(args, int)));
+	else if (c == 'u')
+		return (handle_unsigned(va_arg(args, unsigned int)));
+	else if (c == 'x' || c == 'X')
+		return (handle_hex(va_arg(args, unsigned int), (c == 'X')));
+	else if (c == '%')
+		return (write(1, "%", 1));
+	return (0);
+}
 
 int	ft_printf(const char *format, ...)
 {
@@ -34,23 +53,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int	handle_specifier(char c, va_list args)
-{
-	if (c == 'c')
-		return (handle_char(va_arg(args, int)));
-	else if (c == 's')
-		return (handle_str(va_arg(args, char *)));
-	else if (c == 'p')
-		return (handle_ptr(va_arg(args, void *)));
-	else if (c == 'd' || c == 'i')
-		return (handle_nbr(va_arg(args, int)));
-	else if (c == 'u')
-		return (handle_unsigned(va_arg(args, unsigned int)));
-	else if (c == 'x' || c == 'X')
-		return (handle_hex(va_arg(args, unsigned int), (c == 'X')));
-	else if (c == '%')
-		return (write(1, "%", 1));
-	return (0);
 }
