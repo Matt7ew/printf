@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strbase.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
+/*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/06 09:31:47 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/05/17 01:53:39 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,18 @@ char ft_strbase(unsigned long long input, const char *base)
     }
     return(result);
 }
+int handle_d_i(int num)  
+{  
+    int sign = 1;  
+    unsigned long long abs_num;  
+
+    if (num < 0) {  
+        sign = -1;  
+        abs_num = (unsigned long long)(-num); // Safely negate  
+    } else {  
+        abs_num = num;  
+    }  
+
+    char *str = ft_strbase(abs_num, "0123456789");  
+    // Print sign (if needed) + str  
+}  
