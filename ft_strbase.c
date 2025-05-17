@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 02:05:09 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 02:15:41 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,30 @@ char	*ft_strbase(unsigned long long input, const char *base)
 		}
 	}
 	return (result);
+}
+
+int	ft_print_bx(unsigned int s)
+{
+	char	*str;
+	int		rl;
+
+	str = ft_strbase(s, "0123456789ABCDEF");
+	if (!str)
+		return (-1);
+	rl = ft_putstr(str);
+	free(str);
+	return (rl);
+}
+
+int	ft_print_sx(unsigned int s)
+{
+	char	*str;
+	int		rl;
+
+	str = ft_strbase(s, "0123456789abcdef");
+	if (!str)
+		return (-1);
+	rl = ft_putstr(str);
+	free(str);
+	return (rl);
 }
