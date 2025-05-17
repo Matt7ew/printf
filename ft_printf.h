@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:47:03 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 03:49:57 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 05:35:05 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int		ft_printf(const char *str, ...);
-int		ft_showpointer(void *p);
-int		ft_print_bx(unsigned int s);
-int		ft_print_sx(unsigned int s);
-char	*ft_strbase(unsigned long long input, const char *base);
-int		ft_str_unique(char *base);
+int		ft_printf(const char *format, ...);
+int		handle_specifier(char c, va_list args);
+int		handle_char(int c);
+int		handle_str(char *str);
+int		handle_ptr(void *ptr);
+int		handle_nbr(int n);
+int		handle_hex(unsigned int n, int uppercase);
+int		handle_unsigned(unsigned int n);
+char	*ft_strbase(unsigned long long n, char *base);
+int		ft_print_prefix(char *prefix);
+int		ft_strlen_printf(const char *s);
 
 #endif

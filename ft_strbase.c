@@ -6,91 +6,83 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 03:54:19 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 05:47:46 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	check_base(const char *base)
+static int	check_base(char *base)
 {
-	if (!base)
+	int	i;
+	int	j;
+
+	if (!base || ft_strlen(base) < 2)
 		return (0);
-	if (ft_strlen(base) < 2 || !ft_str_unique((char *)base))
-		return (0);
+	i = -1;
+	while (base[++i])
+	{
+		j = i + 1;
+		while (base[j])
+			if (base[i] == base[j++])
+				return (0);
+	}
 	return (1);
 }
 
-static int	get_rlength(unsigned long long input, const char *base)
+char	*ft_strbase(unsigned long long n, char *base)
 {
-	int	length;
-	int	base_len;
-
-	base_len = ft_strlen(base);
-	length = 0;
-	if (input == 0)
-		return (1);
-	while (input != 0)
-	{
-		input = input / base_len;
-		length++;
-	}
-	return (length);
-}
-
-char	*ft_strbase(unsigned long long input, const char *base)
-{
-	char	*result;
-	int		length;
+	char	*str;
 	int		base_len;
+	int		digits;
 
 	if (!check_base(base))
 		return (NULL);
 	base_len = ft_strlen(base);
-	length = get_rlength(input, base);
-	result = ft_calloc(length + 1, sizeof(char));
-	if (!result)
+	digits = 1;
+	if (n == 0)
+		return (ft_strdup("0"));
+	while (n > 0 && digits++)
+		n /= base_len;
+	str = (char *)malloc(digits + 1);
+	if (!str)
 		return (NULL);
-	if (input == 0)
-		result[0] = base[0];
-	else
+	str[digits] = '\0';
+	while (digits--)
 	{
-		while (input != 0)
-		{
-			length--;
-			result[length] = base[input % base_len];
-			input = input / base_len;
-		}
+		str[digits] = base[n % base_len];
+		n /= base_len;
 	}
-	return (result);
+	return (str);
 }
 
-int	handle_u(unsigned int num)
+int	handle_hex(unsigned int n, int uppercase)
 {
+	char	*base;
 	char	*str;
+	int		len;
 
-	str = ft_strbase(num, "0123456789");
-	ft_putstr_fd(str, 1);
-	return (1);
+	base = "0123456789abcdef";
+	if (uppercase)
+		base = "0123456789ABCDEF";
+	str = ft_strbase(n, base);
+	if (!str)
+		return (-1);
+	len = write(1, str, ft_strlen(str));
+	free(str);
+	return (len);
 }
 
-int	handle_d_i(int num)
+int	handle_unsigned(unsigned int n)
 {
-	int					sign;
-	unsigned long long	abs_num;
-	char				*str;
+	char *str;
+	int len;
 
-	sign = 1;
-	if (num < 0)
-	{
-		sign = -1;
-		abs_num = (unsigned long long)(-num);
-	}
-	else
-	{
-		abs_num = num;
-	}
-	str = ft_strbase(abs_num, "0123456789");
-	ft_putstr_fd(str, 1);
-	return (1);
+	str = ft_strbase(n, "0123456789");
+	if (!str)
+		return (-1);
+	len = ft_strlen_printf(str);
+	write(1, str, len);
+	free(str);
+	return (len);
 }
