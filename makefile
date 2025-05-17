@@ -3,56 +3,49 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+         #
+#    By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:32:17 by matthewjorg       #+#    #+#              #
-#    Updated: 2025/05/06 09:31:49 by matthewjorg      ###   ########.fr        #
+#    Updated: 2025/05/17 02:52:27 by mjorge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Makefile for libftprintf.a
+NAME = libftprintf.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -Iincludes -I$(LIBFT_DIR)/includes
 
-CFILES := \
-    ft_printf.c ft_parse_format.c ft_print_char.c ft_print_string.c \
-	ft_print_decnum.c ft_print_num_nopre.c ft_print_pointer.c \
-	ft_print_unsigned.c ft_print_hex.c ft_print_percent.c ft_utils.c \
-	ft_putnbr_base.c ft_put_utils.c \
-
-OBJDIR := obj
-OFILES := $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))
-
-NAME := libftprintf.a
-
-LIBFT_DIR := libft
-LIBFT := $(LIBFT_DIR)/libft.a
-HEADER := ft_printf.h
+SRCS = ft_strbase.c printf.utils.c ft_printf_fl.c printf.c ft_bigX.c
+OBJS_DIR = obj
+OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
 all: $(NAME)
 
-bonus: all
-
-$(NAME): $(LIBFT) $(OBJDIR) $(OFILES)
-	cp $(LIBFT) $(NAME)
-	ar rcs $@ $(OFILES)
+$(NAME): $(LIBFT) $(OBJS)
+	@ar rcs $@ $(OBJS)
+	@echo "libftprintf.a compiled ✅"
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
-$(OBJDIR)/%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I. -c $< -o $@
-
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
+$(OBJS_DIR)/%.o: %.c
+	@mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJS_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "Objects cleaned 🧹"
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "Full clean 🧼"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
