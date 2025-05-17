@@ -6,7 +6,7 @@
 #    By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:32:17 by matthewjorg       #+#    #+#              #
-#    Updated: 2025/05/17 07:39:15 by mjorge           ###   ########.fr        #
+#    Updated: 2025/05/17 08:06:46 by mjorge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC_DIR = srcs
 OBJ_DIR = obj
 INCLUDES = -Iincludes
 
+# Updated to match the actual filename - removed extra dot from ft_itoa..c
 SRCS = \
 	$(SRC_DIR)/ft_printf.c \
 	$(SRC_DIR)/handlers/handle_char.c \
@@ -36,6 +37,8 @@ all: obj $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/handlers
+	@mkdir -p $(OBJ_DIR)/utils
 
 $(NAME): $(OBJS)
 	@ar rcs $@ $(OBJS)

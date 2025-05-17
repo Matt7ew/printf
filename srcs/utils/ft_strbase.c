@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 07:06:45 by mjorge            #+#    #+#             */
-/*   Updated: 2025/05/17 07:51:51 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 08:12:35 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	check_base(char *base)
 {
@@ -42,29 +43,26 @@ static int	check_base(char *base)
 	return (1);
 }
 
-char	*ft_strbase(unsigned long long n, char *base)
+static int	count_digits(unsigned long long n, int base_len)
 {
-	char				*str;
-	int					base_len;
-	int					digits;
-	unsigned long long	temp;
+	int	digits;
 
-	if (!check_base(base))
-		return (NULL);
-	base_len = ft_strlen(base);
 	digits = 0;
-	temp = n;
-	if (temp == 0)
-		digits = 1;
-	while (temp > 0)
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		temp /= base_len;
+		n /= base_len;
 		digits++;
 	}
-	str = (char *)malloc(digits + 1);
-	if (!str)
-		return (NULL);
-	str[digits] = '\0';
+	return (digits);
+}
+
+static void	fill_str(char *str, unsigned long long n, char *base, int digits)
+{
+	int	base_len;
+
+	base_len = ft_strlen(base);
 	if (n == 0)
 		str[0] = base[0];
 	while (n > 0)
@@ -72,5 +70,22 @@ char	*ft_strbase(unsigned long long n, char *base)
 		str[--digits] = base[n % base_len];
 		n /= base_len;
 	}
+}
+
+char	*ft_strbase(unsigned long long n, char *base)
+{
+	char	*str;
+	int		base_len;
+	int		digits;
+
+	if (!check_base(base))
+		return (NULL);
+	base_len = ft_strlen(base);
+	digits = count_digits(n, base_len);
+	str = malloc(digits + 1);
+	if (!str)
+		return (NULL);
+	str[digits] = '\0';
+	fill_str(str, n, base, digits);
 	return (str);
 }

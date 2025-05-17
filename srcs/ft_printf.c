@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 07:20:44 by mjorge            #+#    #+#             */
-/*   Updated: 2025/05/17 07:44:17 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 08:27:06 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_specifier(char c, va_list args)
 		return (handle_hex(va_arg(args, unsigned int), (c == 'X')));
 	else if (c == '%')
 		return (write(1, "%", 1));
-	return (0);
+	return (-1);
 }
 
 int	ft_printf(const char *format, ...)
