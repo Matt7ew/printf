@@ -3,61 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   printf.utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthewjorge <matthewjorge@student.42.f    +#+  +:+       +#+        */
+/*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:52 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/04/25 10:52:24 by matthewjorg      ###   ########.fr       */
+/*   Updated: 2025/05/17 02:07:27 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_showpointer(void *p)
+int	ft_showpointer(void *p)
 {
-	unsigned long long int	ptr;
-	char					*s;
-	int						rl;
+	unsigned long long	ptr;
+	char				*s;
+	int					rl;
 
-	ptr = (unsigned long long int)p;
 	if (p == NULL)
-		return (null_pointer());
+		return (ft_putstr("0x0"));
+	ptr = (unsigned long long)p;
 	s = ft_strbase(ptr, "0123456789abcdef");
-	if (s == NULL)
+	if (!s)
 		return (-1);
-	if (ft_putstr("0x") < 0)
+	rl = ft_putstr("0x");
+	if (rl == -1)
 	{
 		free(s);
 		return (-1);
 	}
-	if (ft_putstr(s) < 0)
-	{
-		free(s);
-		return (-1);
-	}
-	rl = ft_strlen(s) + 2;
+	rl += ft_putstr(s);
 	free(s);
 	return (rl);
-} 
+}
 
-int ft_str_unique(unsigned char *base)
+int	ft_str_unique(char *base)
 {
-	size_t length;
-	size_t str1;
-	size_t check;
+	size_t	i;
+	size_t	j;
 
-	length = ft_strlen(base);
-	str1 = 0;
-
-	while(str1  < length)
+	if (!base)
+		return (0);
+	i = 0;
+	while (base[i])
 	{
-		check = str1 + 1;
-		while(check < length)
+		j = i + 1;
+		while (base[j])
 		{
-			if(base[str1] == base[check])
-				return(0);
-			check++;
+			if (base[i] == base[j])
+				return (0);
+			j++;
 		}
-		str1++;
+		i++;
 	}
-	return(1);
+	return (1);
 }
