@@ -6,7 +6,7 @@
 /*   By: mjorge <mjorge@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 11:30:07 by matthewjorg       #+#    #+#             */
-/*   Updated: 2025/05/17 02:26:31 by mjorge           ###   ########.fr       */
+/*   Updated: 2025/05/17 02:39:15 by mjorge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,28 @@ char	*ft_strbase(unsigned long long input, const char *base)
 	return (result);
 }
 
-int	handle_u(unsigned int num)  
-{  
-	char *str = ft_strbase(num, "0123456789");
-}
-
-int handle_d_i(int num)  
-{  
-	int sign;  
-	unsigned long long	abs_num;  
+int	handle_u(unsigned int num)
+{
 	char	*str;
 
-	sign =1;
-    if (num < 0) {  
-        sign = -1;  
-        abs_num = (unsigned long long)(-num); // Safely negate  
-    } else {  
-        abs_num = num;  
-    }  
+	str = ft_strbase(num, "0123456789");
+}
 
-    str = ft_strbase(abs_num, "0123456789");  
-    // Print sign (if needed) + str  
-}  
+int	handle_d_i(int num)
+{
+	int					sign;
+	unsigned long long	abs_num;
+	char				*str;
+
+	sign = 1;
+	if (num < 0)
+	{
+		sign = -1;
+		abs_num = (unsigned long long)(-num);
+	}
+	else
+	{
+		abs_num = num;
+	}
+	str = ft_strbase(abs_num, "0123456789");
+}
